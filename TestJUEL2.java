@@ -218,6 +218,9 @@ public class TestJUEL2 {
         GetFullProductListRs.Status status4 = new GetFullProductListRs.Status();
         status4.setStatusDesc("successfully");
         getFullProductListRs.setStatus(status4);
+	Predicate<String> p7 = it -> it.startsWith("success");
+        context.setVariable("p7", factory.createValueExpression(p7, Predicate.class));
+	ValueExpression query7 = factory.createValueExpression(context, "#{g.getStatus().getStatusDec().stream().allMatch(p7)}", boolean.class);
 
 
         /* 8. в коллекции acctTypes - один элемент и он равен какому то конкретному значению. */
