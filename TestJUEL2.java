@@ -81,8 +81,6 @@ public class TestJUEL2 {
 
         /* 3. все поля statusCode в коллекции status/additionalStatus == 0 */
         System.out.println("3. все поля statusCode в коллекции status/additionalStatus == 0");
-        //TODO не могу применить ко всем элементам в коллекции, с Java 8 могу с помощью stream().allMatch()
-        /*Не получается применить условие ко всем объектам так как не работает stream().filter()*/
         Predicate<AdditionalStatusGFPLType> p2 = e -> e.getStatusCode() == 0;
         ValueExpression statusAdditionalStatusStatusCode = factory.createValueExpression(context, "#{g.status.additionalStatuses.stream().allMatch(p3)}", boolean.class);
 //        ValueExpression statusAdditionalStatusStatusCode = factory.createValueExpression(context, "#{g.status.additionalStatuses.stream()}", Object.class);
@@ -101,12 +99,11 @@ public class TestJUEL2 {
 
         /* 4. Какое то конкретное значение больше чем все элементы timeOutList/timeMin в коллекции metricList/metrics в коллекции statusDetailByProductList/statusDetailByProducts,
          и меньше чем все элементы timeOutList/timeMax в коллекции metricList/metrics в коллекции statusDetailByProductList/statusDetailByProducts. */
-        //Не получается сделать только одним juel
         System.out.println("4. Какое то конкретное значение больше чем все элементы timeOutList/timeMin в коллекции " +
                 "metricList/metrics в коллекции statusDetailByProductList/statusDetailByProducts, и меньше чем все " +
                 "элементы timeOutList/timeMax в коллекции metricList/metrics в коллекции " +
                 "statusDetailByProductList/statusDetailByProducts.");
-        //TODO не могу применить ко всем элементам в коллекции
+       
         GetFullProductListRs.StatusDetailByProductList statusDetailByProductList = new GetFullProductListRs.StatusDetailByProductList();
         StatusDetailByProductType statusDetailByProductType = new StatusDetailByProductType();
         TimeMetricListType timeMetricListType = new TimeMetricListType();
@@ -168,18 +165,12 @@ public class TestJUEL2 {
         statusDetailByProductList.getStatusDetailByProducts().add(statusDetailByProductType);
         getFullProductListRs.setStatusDetailByProductList(statusDetailByProductList);
 
-
-        //TODO сделать не через два стрима а через flatMap может
         Predicate<TimeMetricType> p6 = it -> it.getTimeOutList().getTimeMin().getFirstDayOfWeek() < 7;
         Predicate<StatusDetailByProductType> p5 = it -> it.getMetricList().getMetrics().stream().allMatch(p6) ;
         context.setVariable("p5", factory.createValueExpression(p5, Predicate.class));
 //        context.setVariable("p5", factory.createValueExpression(p5, Predicate.class));
 
         ValueExpression query4 = factory.createValueExpression(context, "#{g.getStatusDetailByProductList().getStatusDetailByProducts().stream().allMatch(p5)}", boolean.class);
-//        query4 = factory.createValueExpression(context, "#{g.statusDetailByProductList.statusDetailByProducts.stream().skip(0).metricList.metrics.timeOutList.timeMin.stream().allMatch(p4)}", boolean.class);
-//        query4 = factory.createValueExpression(context, "#{g.getStatusDetailByProductList().getStatusDetailByProducts().forEach(it -> {it.getMetricList().getMetrics().forEach(it2 -> {if (it2.getTimeOutList().getTimeMin().getFirstDayOfWeek() < 7)}); });.stream().allMatch(p4)}", boolean.class);
-//        query4 = factory.createValueExpression(context, "#{g.getStatusDetailByProductList.getStatusDetailByProducts.get(0).getMetricList().getMetrics.get(0).getTimeOutList.timeMin.stream().allMatch(p4)}", boolean.class);
-//        ValueExpression statusAdditionalStatusStatusCode = factory.createValueExpression(context, "#{g.status.additionalStatuses.stream()}", Object.class);
         System.out.println(query4.getValue(context));
 
 //        System.out.println(getFullProductListRs.getStatusDetailByProductList().getStatusDetailByProducts().stream().allMatch(p5));
@@ -222,7 +213,7 @@ public class TestJUEL2 {
         System.out.println(multiCondition.getValue(context));
 
         /* 7. все поля status/statusDesc начинаются с "success". */
-        //TODO не могу применить ко всем элементам в коллекции
+        
         System.out.println("7. все поля status/statusDesc начинаются с success.");
         GetFullProductListRs.Status status4 = new GetFullProductListRs.Status();
         status4.setStatusDesc("successfully");
