@@ -20,11 +20,11 @@ Java — строго типизированный объектно-ориент
 #### Пример простого условия
 ```
 //        2. Равно ли поле scope какому-то конкретному значению.
-        if (client.getScope().equals("TestScope")) {
+        if (client.getScope().equals("TestScope")) 
             System.out.println(true);
-        } else {
+        else 
             System.out.println(false);
-        }
+        
 ```
 #### Пример сложного условия
 ```
