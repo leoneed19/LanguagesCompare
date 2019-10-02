@@ -20,13 +20,7 @@ Java — строго типизированный объектно-ориент
 #### Пример простого условия
 ```
 //        2. Равно ли поле scope какому-то конкретному значению.
-        System.out.println("2.Равно ли поле scope какому-то конкретному значению.");
-        if (client.getScope().equals("notTestScope")) {
-            System.out.println(true);
-        } else {
-            System.out.println(false);
-        }
-        if (client.getScope().equals("testScope")) {
+        if (client.getScope().equals("TestScope")) {
             System.out.println(true);
         } else {
             System.out.println(false);
@@ -35,7 +29,6 @@ Java — строго типизированный объектно-ориент
 #### Пример сложного условия
 ```
 // 8. в коллекции acctTypes - один элемент и он равен какому то конкретному значению.
-        System.out.println("8. в коллекции acctTypes - один элемент и он равен какому то конкретному значению.");
         if (getFullProductListRs.getAcctTypes().size() == 1 && getFullProductListRs.getAcctTypes().get(0) == AcctTypeType.IMA)
             System.out.println(true);
         else
@@ -78,13 +71,7 @@ Kotlin — статически типизированный язык прогр
 #### Пример простого условия
 ```
 /** 4. Равно ли поле status/code 0. */
-    println("4. Равно ли поле status/code 0.")
     if (client.status.code == 0L) {
-        println(true)
-    } else {
-        println(false)
-    }
-    if (client2.status.code == 0L) {
         println(true)
     } else {
         println(false)
@@ -149,12 +136,7 @@ JUEL - это реализация унифицированного языка �
 context.setVariable("client2", factory.createValueExpression(client2, client.getClass()));
 
  /* 7. Содержит ли scope в себе какое-то значение. */
-        System.out.println("7. Содержит ли scope в себе какое-то значение.");
-
         ValueExpression scopeIsEmpty = factory.createValueExpression(context, "#{client2.scope == null}", boolean.class);
-        System.out.println(scopeIsEmpty.getValue(context));
-
-        scopeIsEmpty = factory.createValueExpression(context, "#{client.scope == null}", boolean.class);
         System.out.println(scopeIsEmpty.getValue(context));
 ```
 #### Пример сложного условия
@@ -162,13 +144,7 @@ context.setVariable("client2", factory.createValueExpression(client2, client.get
  context.setVariable("g", factory.createValueExpression(getFullProductListRs, getFullProductListRs.getClass()));
 
 /* 9. проверить что operUID и systemId не равны null. */
-        System.out.println("9. проверить что operUID и systemId не равны null.");
-        getFullProductListRs.setOperUID("operUID");
         ValueExpression multiCon = factory.createValueExpression(context, "#{g.operUID != null and g.systemId != null}", boolean.class);
-        System.out.println(multiCon.getValue(context));
-        getFullProductListRs.setSystemId("SystemId");
-
-        multiCon = factory.createValueExpression(context, "#{g.operUID != null and g.systemId != null}", boolean.class);
         System.out.println(multiCon.getValue(context));
 ```
 
