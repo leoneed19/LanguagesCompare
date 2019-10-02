@@ -19,9 +19,27 @@ Java — строго типизированный объектно-ориент
 - громоздкие условия, если использовать циклы 
 #### Пример простого условия
 ```
+//        2. Равно ли поле scope какому-то конкретному значению.
+        System.out.println("2.Равно ли поле scope какому-то конкретному значению.");
+        if (client.getScope().equals("notTestScope")) {
+            System.out.println(true);
+        } else {
+            System.out.println(false);
+        }
+        if (client.getScope().equals("testScope")) {
+            System.out.println(true);
+        } else {
+            System.out.println(false);
+        }
 ```
 #### Пример сложного условия
 ```
+// 8. в коллекции acctTypes - один элемент и он равен какому то конкретному значению.
+        System.out.println("8. в коллекции acctTypes - один элемент и он равен какому то конкретному значению.");
+        if (getFullProductListRs.getAcctTypes().size() == 1 && getFullProductListRs.getAcctTypes().get(0) == AcctTypeType.IMA)
+            System.out.println(true);
+        else
+            System.out.println(false);
 ```
 ### Scala
 Scala — мультипарадигмальный язык программирования, сочетающий возможности функционального и объектно-ориентированного программирования.
