@@ -1,0 +1,12 @@
+Для GetFullProductListRs:
+Проверить, что:
+1) поле status/statusCode == 0.
+2) список status/additionalStatuses - пуст или == null.
+3) все поля statusCode в коллекции status/additionalStatus == 0.
+4) Какое то конкретное значение больше чем все элементы timeOutList/timeMin в коллекции metricList/metrics в коллекции statusDetailByProductList/statusDetailByProducts,
+ и меньше чем все элементы timeOutList/timeMax в коллекции metricList/metrics в коллекции statusDetailByProductList/statusDetailByProducts.
+5) в коллекции acctTypes нет значений DEPOSIT и IMA.
+6) (посмотри что можно сделать когда нужно проверить >1 условия, например) rqUid == 'qwe123' и список status/additionalStatus - пуст или == null.
+7) все поля status/statusDesc начинаются с "success".
+8) в коллекции acctTypes - один элемент и он равен какому то конкретному значению.
+9) проверить что operUID и syatemId не равны null.
