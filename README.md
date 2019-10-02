@@ -80,7 +80,6 @@ Kotlin — статически типизированный язык прогр
 #### Пример сложного условия
 ```
 /** 3. все поля statusCode в коллекции status/additionalStatus == 0 */
-    println("3. все поля statusCode в коллекции status/additionalStatus == 0")
     var result3 = true
     getFullProductListRs?.status?.additionalStatuses?.forEach {
         if (it.statusCode == 0L)
