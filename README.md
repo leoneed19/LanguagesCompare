@@ -77,9 +77,31 @@ Kotlin — статически типизированный язык прогр
 не выявлены
 #### Пример простого условия
 ```
+/** 4. Равно ли поле status/code 0. */
+    println("4. Равно ли поле status/code 0.")
+    if (client.status.code == 0L) {
+        println(true)
+    } else {
+        println(false)
+    }
+    if (client2.status.code == 0L) {
+        println(true)
+    } else {
+        println(false)
+    }
 ```
 #### Пример сложного условия
 ```
+/** 3. все поля statusCode в коллекции status/additionalStatus == 0 */
+    println("3. все поля statusCode в коллекции status/additionalStatus == 0")
+    var result3 = true
+    getFullProductListRs?.status?.additionalStatuses?.forEach {
+        if (it.statusCode == 0L)
+            result3 = result3 && true
+        else
+            result3 = result3 && false
+    }
+    println(result3)
 ```
 ### Groovy
 Groovy — объектно-ориентированный язык программирования, разработанный для платформы Java как дополнение к языку Java с возможностями Python, Ruby и Smalltalk. 
@@ -124,9 +146,30 @@ JUEL - это реализация унифицированного языка �
 не выявлены
 #### Пример простого условия
 ```
+context.setVariable("client2", factory.createValueExpression(client2, client.getClass()));
+
+ /* 7. Содержит ли scope в себе какое-то значение. */
+        System.out.println("7. Содержит ли scope в себе какое-то значение.");
+
+        ValueExpression scopeIsEmpty = factory.createValueExpression(context, "#{client2.scope == null}", boolean.class);
+        System.out.println(scopeIsEmpty.getValue(context));
+
+        scopeIsEmpty = factory.createValueExpression(context, "#{client.scope == null}", boolean.class);
+        System.out.println(scopeIsEmpty.getValue(context));
 ```
 #### Пример сложного условия
 ```
+ context.setVariable("g", factory.createValueExpression(getFullProductListRs, getFullProductListRs.getClass()));
+
+/* 9. проверить что operUID и systemId не равны null. */
+        System.out.println("9. проверить что operUID и systemId не равны null.");
+        getFullProductListRs.setOperUID("operUID");
+        ValueExpression multiCon = factory.createValueExpression(context, "#{g.operUID != null and g.systemId != null}", boolean.class);
+        System.out.println(multiCon.getValue(context));
+        getFullProductListRs.setSystemId("SystemId");
+
+        multiCon = factory.createValueExpression(context, "#{g.operUID != null and g.systemId != null}", boolean.class);
+        System.out.println(multiCon.getValue(context));
 ```
 
 ## Выводы
